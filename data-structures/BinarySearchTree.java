@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BinarySearchTree<T> {
 
@@ -107,6 +109,31 @@ public class BinarySearchTree<T> {
         postOrderTraversal(currNode.left);
         postOrderTraversal(currNode.right);
         System.out.println(currNode.element);
+    }
+
+    public void levelOrderTraversal() {
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.offer(root);
+        for (int i = 0; i < size; i++) {
+            Node<T> currNode = queue.poll();
+            System.out.println(currNode.element);
+            if (currNode.left != null) {
+                queue.offer(currNode.left);
+            }
+            if (currNode.right != null) {
+                queue.offer(currNode.right);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Integer[] arr = {10, 20, 30, 40, 50, 60, 70};
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        for (Integer i : arr) {
+            bst.add(i);
+        }
+        // test code here...
+
     }
 
 }
