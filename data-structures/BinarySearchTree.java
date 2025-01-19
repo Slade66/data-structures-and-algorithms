@@ -82,4 +82,31 @@ public class BinarySearchTree<T> {
 
     }
 
+    public void preOrderTraversal(Node<T> currNode) {
+        if (currNode == null) {
+            return;
+        }
+        System.out.println(currNode.element);
+        preOrderTraversal(currNode.left);
+        preOrderTraversal(currNode.right);
+    }
+
+    public void inOrderTraversal(Node<T> currNode) {
+        if (currNode == null) {
+            return;
+        }
+        inOrderTraversal(currNode.left);
+        System.out.println(currNode.element);
+        inOrderTraversal(currNode.right);
+    }
+
+    public void postOrderTraversal(Node<T> currNode) {
+        if (currNode == null) {
+            return;
+        }
+        postOrderTraversal(currNode.left);
+        postOrderTraversal(currNode.right);
+        System.out.println(currNode.element);
+    }
+
 }
