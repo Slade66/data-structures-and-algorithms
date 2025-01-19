@@ -111,12 +111,15 @@ public class BinarySearchTree<T> {
         System.out.println(currNode.element);
     }
 
-    public void levelOrderTraversal() {
+    public void levelOrderTraversal(Visitor visitor) {
         Queue<Node<T>> queue = new LinkedList<>();
         queue.offer(root);
         for (int i = 0; i < size; i++) {
             Node<T> currNode = queue.poll();
-            System.out.println(currNode.element);
+            boolean isContinue = visitor.visit(currNode.element);
+            if (!isContinue) {
+                return;
+            }
             if (currNode.left != null) {
                 queue.offer(currNode.left);
             }
@@ -124,6 +127,10 @@ public class BinarySearchTree<T> {
                 queue.offer(currNode.right);
             }
         }
+    }
+
+    public static interface Visitor<T> {
+        boolean visit(T element);
     }
 
     public static void main(String[] args) {
